@@ -1,0 +1,18 @@
+<main-header></main-header>
+<div class="content">
+  <div class="card">
+    <div ng-if="wait">Please wait and refresh when the Admin starts the round.</div>
+    <div ng-show="!wait">
+      <div class="fighter-filter">
+        <input type="text" ng-model="searchFighter" placeholder="Search Fighter">
+        Only alive <input type="checkbox" ng-model="onlyAlive">
+      </div>
+      <div class="adversary-area">
+        <fighter-card fighter="adversary" ng-repeat="adversary in filteredAdversaries track by $index" total="adversaries.length"></fighter-card>
+      </div>
+      <div class="my-fighter-area">
+        <my-fighter fighter="myFighter"></my-fighter>
+      </div>
+    </div>
+  </div>
+</div>

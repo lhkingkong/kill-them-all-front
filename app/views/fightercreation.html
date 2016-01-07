@@ -1,0 +1,49 @@
+<main-header></main-header>
+<div class="content fighter-creation">
+  <div class="card">
+    <div class="col-md-4">
+      <label>Gender:</label>
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn" ng-class="gender == 1?'btn-danger':'btn-default'" ng-click="gender=1">Female</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn" ng-class="gender == 2?'btn-danger':'btn-default'" ng-click="gender=2">Male</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn" ng-class="gender == 0?'btn-danger':'btn-default'" ng-click="gender=0">Hungry</button>
+        </div>
+      </div>
+      <label>Fighter Name:</label>
+      <input type="text" class="col-md-12" ng-model="fighterName" maxlength="45">
+      <label>Speech before kill somebody:</label>
+      <input type="text" class="col-md-12" ng-model="killSpeech">
+      <label>Last words (if you got killed):</label>
+      <input type="text" class="col-md-12" ng-model="lastWords">
+      <label>Victory speech:</label>
+      <input type="text" class="col-md-12" ng-model="victorySpeech">
+      <label>Type:</label>
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn" ng-class="fighterType == 1?'btn-danger':'btn-default'" ng-click="fighterType=1">Fire</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn" ng-class="fighterType == 2?'btn-primary':'btn-default'" ng-click="fighterType=2">Water</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn" ng-class="fighterType == 3?'btn-success':'btn-default'" ng-click="fighterType=3">Earth</button>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn" ng-class="fighterType == 4?'btn-info':'btn-default'" ng-click="fighterType=4">Wind</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <label>Select fighter class:</label>
+      <class-card fighter-class="fighterClass" ng-repeat="fighterClass in classes" ng-class="{'selected':fighterClass.selected}" ng-click="selectClass(fighterClass)"></class-card>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-primary btn-lg" ng-click="createFighter($event)">Create Fighter</button>
+    </div>
+  </div>
+</div>

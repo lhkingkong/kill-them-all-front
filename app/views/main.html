@@ -1,0 +1,10 @@
+<main-header></main-header>
+<div class="content">
+  <div class="card">
+    <label>Enter a game</label>
+    <ul class="games-list">
+      <li ng-repeat="game in games" ng-class="{'selected':game.selected}" ng-click="selectGame(game)">{{game.name}}<i class="glyphicon" ng-class="{0:'glyphicon-stop',1:'glyphicon-play'}[game.status]"></i></li>
+    </ul>
+    <button class="btn btn-primary btn-lg" ng-click="enterGame($event)">Enter Game</button>
+  </div>
+</div>

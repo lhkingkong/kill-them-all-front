@@ -1,0 +1,122 @@
+.admin-header{
+  background: #900;
+}
+.main-view{
+  padding-bottom: 60px;
+}
+.main-view.ng-leave {
+  transform:translateX(-100%);
+}
+.main-view > .content{
+  padding: 10px;
+}
+.main-view > .content .card{
+  padding: 10px;
+  border: 2px solid #CCC;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+
+.games-list{
+  list-style: none;
+  margin: 0 0 10px;;
+  padding: 0;
+}
+.games-list > li{
+  cursor: pointer;
+  color:#333;
+  padding: 10px;
+  border-bottom: 1px solid #CCC;
+}
+.games-list > li i{
+  float: right;
+  color: #333;
+}
+.games-list > li.selected{
+  background: #900;
+  color: #EFEFEF;
+  border-radius: 3px;
+}
+.games-list > li.selected i{
+  color: #EFEFEF;
+}
+
+.fighter-creation label{
+  display: block;
+  margin-top: 5px;
+}
+.class-card{
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.class-card.selected{
+  background-color: #334;
+  color: white;
+  box-shadow: 0 0 5px #333;
+}
+.class-card:hover{
+  background-color: #600;
+  color: white;
+}
+.class-card h3{
+  margin: 0;
+  padding: 0;
+  font-size: 1.1em;
+  text-align: center;
+}
+.class-card .progress{
+  background: #333;
+  margin: 5px 0;
+}
+.class-card .progress .progress-bar{
+  text-align: left;
+  padding-left: 5px;
+}
+.adversary-area{
+  height: 310px;
+  overflow: auto;
+  text-align: right;
+}
+.fighter-card{
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 35px;
+  max-width: 80x;
+}
+.fighter-card:hover{
+  background-color: #FFF;
+  box-shadow: 0 0 5px #433;
+}
+.fighter-card .fighter-name{
+  position: absolute;
+  display: none;
+  top: 115px;
+  left: 0;
+  padding: 5px;
+  border-radius: 3px;
+  background: white;
+  box-shadow: 0 0 5px #433;
+  z-index: 2;
+}
+.fighter-card:hover .fighter-name{
+  display: inline-block;
+}
+.fighter-card .progress{
+  margin-bottom: 2px;
+}
+.fighter-card img{
+  max-width: 80px;
+}
+.my-fighter{
+  max-width: 100px;
+}
+.my-fighter img{
+  max-width: 100px;
+}

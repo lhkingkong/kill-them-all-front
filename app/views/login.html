@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <h1>Conquer the Floor</h1>
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="inputUser">User:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputUser" placeholder="Enter user" ng-model="loginUser" data-toggle="popover" data-trigger="manual" data-content="Required." ng-keypress="keyPressEnter($event)">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="inputPassword">Password:</label>
+      <div class="col-sm-10">      
+        <input type="password" class="form-control" id="inputPassword" placeholder="Enter password" ng-model="loginPassword" data-toggle="popover" data-trigger="manual" data-content="Required." ng-keypress="keyPressEnter($event)">
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-default" ng-click="signInAdmin($event)">Admin</button>
+          <button class="btn btn-warning" ng-click="signUp($event)">Register</button>
+          <button class="btn btn-success" ng-click="signIn($event)">Start</button>
+      </div>
+    </div>
+    <div class="alert alert-danger" role="alert" ng-if="wrongUser">The Password is incorrect, please verify and try again.</div>
+    <div class="alert alert-danger" role="alert" ng-if="somethingWrong">Sorry, but something go wrong, please try again.</div>
+  </form>
+</div>
