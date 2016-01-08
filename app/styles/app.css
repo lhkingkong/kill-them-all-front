@@ -89,10 +89,15 @@
   position: relative;
   margin-bottom: 35px;
   max-width: 80x;
+  border: 2px solid transparent;
 }
+.fighter-card.selected,
 .fighter-card:hover{
   background-color: #FFF;
   box-shadow: 0 0 5px #433;
+}
+.fighter-card.selected{
+  border: 2px solid red;
 }
 .fighter-card .fighter-name{
   position: absolute;
@@ -105,6 +110,7 @@
   box-shadow: 0 0 5px #433;
   z-index: 2;
 }
+.fighter-card.selected .fighter-name,
 .fighter-card:hover .fighter-name{
   display: inline-block;
 }
@@ -114,9 +120,86 @@
 .fighter-card img{
   max-width: 80px;
 }
+.my-fighter-area{
+  vertical-align: top;
+  position: relative;
+  background: #333;
+  display: inline-block;
+  width: 230px;
+  border-radius: 3px;
+  overflow: hidden;
+  height: 150px;
+}
+/* animations */
+.my-fighter-area .fighter-card.ng-enter, .slide-animate.ng-leave{
+  -webkit-transition:all ease-in 1s;
+  -moz-transition:all ease-in 1s;
+  -o-transition:all ease-in 1s;
+  transition:all ease-in 1s;
+}
+.my-fighter-area .fighter-card.ng-enter.ng-enter-active {
+  right: 0px;
+}
+.my-fighter-area .fighter-card.ng-enter {
+  position: absolute;
+  right: -220px;
+}
+.my-fighter-area .fighter-card.ng-leave.ng-leave-active {
+  position: absolute;
+  right: -300px;
+}
+.my-fighter-area .fighter-card.ng-leave {
+  -webkit-transition:all ease-in 1s;
+  -moz-transition:all ease-in 1s;
+  -o-transition:all ease-in 1s;
+  transition:all ease-in 1s;
+  position: absolute;
+  right: 0px;
+}
+
+.my-fighter-area .my-fighter.ng-enter, .slide-animate.ng-leave{
+  -webkit-transition:all ease-in 1s;
+  -moz-transition:all ease-in 1s;
+  -o-transition:all ease-in 1s;
+  transition:all ease-in 1s;
+}
+.my-fighter-area .my-fighter.ng-enter.ng-enter-active {
+  left: 0px;
+}
+.my-fighter-area .my-fighter.ng-enter {
+  position: absolute;
+  left: -120px;
+}
+.my-fighter-area .my-fighter.ng-leave.ng-leave-active {
+  position: absolute;
+  left: -300px;
+}
+.my-fighter-area .my-fighter.ng-leave {
+  -webkit-transition:all ease-in 1s;
+  -moz-transition:all ease-in 1s;
+  -o-transition:all ease-in 1s;
+  transition:all ease-in 1s;
+  position: absolute;
+  left: 0px;
+}
+/* end of animations */
+.my-fighter-area .fighter-card{
+  vertical-align: top;
+  margin: 5px;
+}
+.my-fighter-area .fighter-card  .fighter-name{
+  left: 100px;
+  top: 0;
+  width: 200px;
+}
 .my-fighter{
+  margin: 40px 30px 10px 10px;
+  display: inline-block;
   max-width: 100px;
 }
 .my-fighter img{
   max-width: 100px;
+}
+.my-fighter .progress{
+  margin: 0;
 }

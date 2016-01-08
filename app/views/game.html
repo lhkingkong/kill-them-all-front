@@ -8,11 +8,13 @@
         Only alive <input type="checkbox" ng-model="onlyAlive">
       </div>
       <div class="adversary-area">
-        <fighter-card fighter="adversary" ng-repeat="adversary in filteredAdversaries track by $index" total="adversaries.length"></fighter-card>
+        <fighter-card fighter="adversary" ng-repeat="adversary in filteredAdversaries track by $index" total="adversaries.length" ng-click="selectTarget(adversary)" ng-class="{'selected':targetAdversary.idfighter === adversary.idfighter}"></fighter-card>
       </div>
       <div class="my-fighter-area">
-        <my-fighter fighter="myFighter"></my-fighter>
+        <my-fighter ng-if="targetAdversary" fighter="myFighter"></my-fighter>
+        <fighter-card ng-if="targetAdversary" fighter="targetAdversary" ng-animate="'slide'"></fighter-card>
       </div>
+      <button ng-show="targetAdversary" ng-click="attack()" type="button" class="btn btn-danger btn-lg">Attack!</button>
     </div>
   </div>
 </div>

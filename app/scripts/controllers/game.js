@@ -8,13 +8,14 @@
  * Controller of the conquerApp
  */
 angular.module('conquerApp')
-  .controller('GameCtrl', function ($scope, $routeParams, webServices, fighterInfo, $filter) {
+  .controller('GameCtrl', function ($scope, $routeParams, webServices, fighterInfo, $filter, $timeout) {
     $scope.gameName = '';
     $scope.currentRound = '';
     $scope.wait = true;
     $scope.searchFighter = '';
     $scope.onlyAlive = false;
     $scope.adversaries = [];
+    $scope.targetAdversary = '';
 
     webServices.getCurrentRound({
       game: $routeParams.gameId
@@ -47,5 +48,23 @@ angular.module('conquerApp')
     $scope.$watchCollection('[searchFighter,onlyAlive,adversaries]', function (newValues, oldValues) {
       $scope.filteredAdversaries = $filter('filterFighter')($scope.adversaries, newValues);
     });
+
+    $scope.selectTarget = function (target) {
+      $timeout(function () {
+        $scope.targetAdversary = false;
+        $timeout(function () {
+          $scope.targetAdversary = target;
+        });
+      });
+    }
+
+    $scope.attack = function () {
+      var params = {
+        target: $scope.targetAdversary.idfighter,
+        round: $scope.currentRound,
+        game: $routeParams.gameId
+      };
+      console.log(params);
+    }
 
   });
