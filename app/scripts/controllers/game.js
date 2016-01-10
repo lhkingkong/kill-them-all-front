@@ -8,7 +8,8 @@
  * Controller of the conquerApp
  */
 angular.module('conquerApp')
-  .controller('GameCtrl', function ($scope, $routeParams, webServices, fighterInfo, $filter, $timeout) {
+  .controller('GameCtrl', function ($scope, $routeParams, $route, $filter, $timeout, $window, webServices, fighterInfo) {
+    $scope.randomBackground = $window.Math.floor(($window.Math.random() * 10) + 1);
     $scope.gameName = '';
     $scope.currentRound = '';
     $scope.wait = true;
@@ -18,7 +19,7 @@ angular.module('conquerApp')
     $scope.targetAdversary = '';
 
     webServices.getCurrentRound({
-      game: $routeParams.gameId
+      game: parseInt($routeParams.gameId)
     }, function (response) {
       if (response.output.wait) {
         $scope.wait = true;
@@ -29,6 +30,12 @@ angular.module('conquerApp')
       $scope.gameName = response.output.game.name;
       $scope.currentRound = response.output.round.round;
       removeMyFighterFromAdversaries(response.output.fighters);
+      if (response.output.action && response.output.action.target) {
+        searchCurrentActionAdversary(response.output.action);
+        $scope.adversaryChosen = true;
+      } else {
+        $scope.adversaryChosen = false;
+      }
     });
 
     function removeMyFighterFromAdversaries(fighters) {
@@ -42,7 +49,14 @@ angular.module('conquerApp')
           $scope.myFighter = fighters[i];
         }
       }
+    }
 
+    function searchCurrentActionAdversary(action) {
+      for (var i = 0, len = $scope.adversaries.length; i < len; i++) {
+        if ($scope.adversaries[i].iduser === action.target) {
+          $scope.targetAdversary = $scope.adversaries[i];
+        }
+      }
     }
 
     $scope.$watchCollection('[searchFighter,onlyAlive,adversaries]', function (newValues, oldValues) {
@@ -50,9 +64,11 @@ angular.module('conquerApp')
     });
 
     $scope.selectTarget = function (target) {
-      $timeout(function () {
+      $timeout.cancel($scope.timeout1);
+      $timeout.cancel($scope.timeout2);
+      $scope.timeout1 = $timeout(function () {
         $scope.targetAdversary = false;
-        $timeout(function () {
+        $scope.timeout2 = $timeout(function () {
           $scope.targetAdversary = target;
         });
       });
@@ -60,11 +76,24 @@ angular.module('conquerApp')
 
     $scope.attack = function () {
       var params = {
-        target: $scope.targetAdversary.idfighter,
+        target: $scope.targetAdversary.iduser,
         round: $scope.currentRound,
-        game: $routeParams.gameId
+        game: parseInt($routeParams.gameId)
       };
-      console.log(params);
+      webServices.createAction(params, function (response) {
+        if (response.output === 'inserted') {
+          $scope.adversaryChosen = true;
+        } else {
+          if (response.output === 'Already action in round') {
+            $scope.adversaryChosen = true;
+          }
+          $scope.adversaryChosen = false;
+        }
+      });
     }
+
+    $scope.reload = function () {
+      $route.reload();
+    };
 
   });

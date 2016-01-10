@@ -1,19 +1,28 @@
 <main-header class="admin-header"></main-header>
 <div class="content game">
   <div class="card">
-    <h2>Round: <label>{{currentRound}}</label> </h2>
-    <button type="button" class="btn btn-primary btn-lg">
-      Next Round
-    </button>
-    <button type="button" class="btn btn-warning btn-lg">
-      Revive somebody
-    </button>
-    <button type="button" class="btn btn-warning btn-lg">
-      Kill somebody
-    </button>
-    <button type="button" class="btn btn-danger btn-lg">
-      End game
-    </button>
+    <h2 class="col-md-6">Round: <span class="label label-info">{{currentRound}}</span> </h2>
+    <button type="button" class="btn btn-primary btn-lg" ng-click="battle()">Go to Battle</button>
+    <button type="button" class="btn btn-warning btn-lg" ng-click="closeRound()">Close Round</button>
+    <button type="button" class="btn btn-danger btn-lg" ng-click="endGame()">End game</button>
+    <div class="gameboy">
+      <div ng-if="targetAdversary" class="my-fighter-area background-{{randomBackground}}">
+        <fighter-card ng-if="targetAdversary" fighter="targetAdversary" ng-animate="'slide'"></fighter-card>
+        <button type="button" class="btn btn-warning" ng-click="revive()">Revive</button>
+        <button type="button" class="btn btn-warning" ng-click="kill()">Kill</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div ng-if="wait">Please wait and refresh when the Admin starts the round.</div>
+    <div ng-show="!wait">
+      <div class="fighter-filter">
+        <input type="text" ng-model="searchFighter" placeholder="Search Fighter"> Only alive
+        <input type="checkbox" ng-model="onlyAlive">
+      </div>
+      <div class="adversary-area">
+        <fighter-card fighter="adversary" ng-repeat="adversary in filteredAdversaries track by $index" total="adversaries.length" ng-click="selectTarget(adversary)" ng-class="{'selected':targetAdversary.idfighter === adversary.idfighter}"></fighter-card>
+      </div>
+    </div>
   </div>
 </div>
-

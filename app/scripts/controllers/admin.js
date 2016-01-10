@@ -36,8 +36,6 @@ angular.module('conquerApp')
     };
 
     $scope.enterGame = function () {
-      console.log($scope.games);
-      console.log($scope.selectedGame);
       $location.path('/gameAdmin/'+$scope.selectedGame.idgame);
     };
 

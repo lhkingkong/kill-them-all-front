@@ -241,6 +241,31 @@ angular
         }]
         }
       })
+      .when('/battle/:gameId', {
+        templateUrl: 'views/battle.html',
+        controller: 'BattleCtrl',
+        controllerAs: 'battle',
+        resolve: {
+          response: ['webServices', '$q', '$location', '$resource', 'adminUserInfo', function (webServices, $q, $location, $resource, adminUserInfo) {
+            var dfd = $q.defer();
+            var user = adminUserInfo.get();
+            if (!user) {
+              webServices.verifyAdminUser({}, function (response) {
+                if (!response.admin) {
+                  $location.path('/login');
+                  dfd.reject('Not logged');
+                } else {
+                  adminUserInfo.set(response.admin);
+                  dfd.resolve();
+                }
+              });
+            } else {
+              dfd.resolve();
+            }
+            return dfd.promise;
+        }]
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });

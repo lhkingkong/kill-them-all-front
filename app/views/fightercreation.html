@@ -25,16 +25,13 @@
       <label>Type:</label>
       <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">
-          <button type="button" class="btn" ng-class="fighterType == 1?'btn-danger':'btn-default'" ng-click="fighterType=1">Fire</button>
+          <button type="button" class="btn" ng-class="fighterType == 1?'btn-danger':'btn-default'" ng-click="fighterType=1">Rock</button>
         </div>
         <div class="btn-group" role="group">
-          <button type="button" class="btn" ng-class="fighterType == 2?'btn-primary':'btn-default'" ng-click="fighterType=2">Water</button>
+          <button type="button" class="btn" ng-class="fighterType == 2?'btn-primary':'btn-default'" ng-click="fighterType=2">Paper</button>
         </div>
         <div class="btn-group" role="group">
-          <button type="button" class="btn" ng-class="fighterType == 3?'btn-success':'btn-default'" ng-click="fighterType=3">Earth</button>
-        </div>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn" ng-class="fighterType == 4?'btn-info':'btn-default'" ng-click="fighterType=4">Wind</button>
+          <button type="button" class="btn" ng-class="fighterType == 3?'btn-success':'btn-default'" ng-click="fighterType=3">Scissors</button>
         </div>
       </div>
     </div>
@@ -43,7 +40,11 @@
       <class-card fighter-class="fighterClass" ng-repeat="fighterClass in classes" ng-class="{'selected':fighterClass.selected}" ng-click="selectClass(fighterClass)"></class-card>
     </div>
     <div class="col-md-3">
-      <button class="btn btn-primary btn-lg" ng-click="createFighter($event)">Create Fighter</button>
+       <div class="card sprite-preview">
+         <div class="class-sprite" style="background-image: url(../images/{{getImagePath()}}.png);"></div>
+         <button class="btn btn-primary" ng-click="changeColor()"><i class="glyphicon glyphicon-arrow-right"></i></button>
+       </div>
+      <button class="btn btn-success btn-lg" ng-click="createFighter($event)">Create Fighter</button>
     </div>
   </div>
 </div>

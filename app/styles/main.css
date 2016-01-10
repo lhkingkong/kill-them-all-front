@@ -45,23 +45,29 @@ html {
   height: 100%;
   box-shadow: 0 0 5px #000;
   position: relative;
-  padding: 60px 0;
+  padding: 60px 0 0;
   overflow-y: auto;
   max-width: 1024px;
 }
 
 /* Custom page footer */
 .footer {
-  padding: 10px;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
   color: #700;
-  border-top: 1px solid #333;
+  box-shadow: 2px 3px 4px #000;
+  cursor: pointer;
   text-align: right;
   bottom: 0;
-  left: 0;
+  opacity: 0.5;
+  right: 0;
   position: fixed;
-  width: 100%;
   z-index: 1;
   background: #EFEFEF;
+}
+.footer:hover {
+  opacity: 0.9;
 }
 
 .container-narrow > hr {

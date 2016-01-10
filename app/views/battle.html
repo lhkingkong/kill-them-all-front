@@ -1,0 +1,19 @@
+<main-header class="admin-header"></main-header>
+<div class="content battle">
+  <div class="card">
+    <button type="button" class="btn btn-primary btn-lg" ng-click="nextRound()">
+      Start new Round
+    </button>
+  </div>
+  <div class="card scroll-bottom">
+    <div ng-repeat="action in actions track by action.idaction">
+      <div class="gameboy" ng-if="$index < showFight" ng-class="{'skipped':action.status==2}">
+        <div class="my-fighter-area background-{{action.randomBackground}}">
+          <my-fighter fighter="action"></my-fighter>
+          <fighter-card fighter="action.target_fighter" ng-animate="'slide'"></fighter-card>
+        </div>
+        <button ng-click="nextFight($index)" type="button" class="btn btn-danger btn-lg">Next Fight</button>
+      </div>
+    </div>
+  </div>
+</div>

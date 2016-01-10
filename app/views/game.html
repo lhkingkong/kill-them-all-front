@@ -1,20 +1,32 @@
 <main-header></main-header>
 <div class="content">
   <div class="card">
+    <h2>Round: <span class="label label-info">{{currentRound}}</span> </h2>
+  </div>
+  <div class="card">
     <div ng-if="wait">Please wait and refresh when the Admin starts the round.</div>
     <div ng-show="!wait">
-      <div class="fighter-filter">
-        <input type="text" ng-model="searchFighter" placeholder="Search Fighter">
-        Only alive <input type="checkbox" ng-model="onlyAlive">
+      <div class="fighter-filter form-group" ng-show="!adversaryChosen">
+        <input class="form-control" type="text" ng-model="searchFighter" placeholder="Search Fighter">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="onlyAlive">
+            Only alive
+          </label>
+        </div>
       </div>
-      <div class="adversary-area">
+      <div class="adversary-area col-md-5" ng-show="!adversaryChosen">
         <fighter-card fighter="adversary" ng-repeat="adversary in filteredAdversaries track by $index" total="adversaries.length" ng-click="selectTarget(adversary)" ng-class="{'selected':targetAdversary.idfighter === adversary.idfighter}"></fighter-card>
       </div>
-      <div class="my-fighter-area">
-        <my-fighter ng-if="targetAdversary" fighter="myFighter"></my-fighter>
-        <fighter-card ng-if="targetAdversary" fighter="targetAdversary" ng-animate="'slide'"></fighter-card>
+      <div class="gameboy">
+        <div class="my-fighter-area background-{{randomBackground}}">
+          <my-fighter ng-if="targetAdversary" fighter="myFighter"></my-fighter>
+          <fighter-card ng-if="targetAdversary" fighter="targetAdversary" ng-animate="'slide'"></fighter-card>
+        </div>
+        <button ng-show="targetAdversary && !adversaryChosen" ng-click="attack()" type="button" class="btn btn-danger btn-lg">Attack!</button>
+        <button ng-show="targetAdversary && adversaryChosen" ng-click="reload()" type="button" class="btn btn-info btn-lg">Reload</button>
       </div>
-      <button ng-show="targetAdversary" ng-click="attack()" type="button" class="btn btn-danger btn-lg">Attack!</button>
+      
     </div>
   </div>
 </div>

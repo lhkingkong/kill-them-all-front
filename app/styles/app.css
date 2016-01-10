@@ -1,9 +1,6 @@
 .admin-header{
   background: #900;
 }
-.main-view{
-  padding-bottom: 60px;
-}
 .main-view.ng-leave {
   transform:translateX(-100%);
 }
@@ -46,6 +43,12 @@
   display: block;
   margin-top: 5px;
 }
+.fighter-creation .sprite-preview .btn{
+  display: inline-block;
+  width:calc(100% - 90px);
+  vertical-align: top;
+  height: 80px;
+}
 .class-card{
   padding: 10px;
   border-radius: 3px;
@@ -75,15 +78,20 @@
   padding-left: 5px;
 }
 .adversary-area{
-  height: 310px;
+  height: 410px;
   overflow: auto;
   text-align: right;
+}
+.fighter-filter .form-control,
+.fighter-filter .checkbox{
+  max-width: 200px;
+  display:inline-block;
 }
 .fighter-card{
   display: inline-block;
   text-align: center;
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 5px 0;
   cursor: pointer;
   border-radius: 3px;
   position: relative;
@@ -102,7 +110,7 @@
 .fighter-card .fighter-name{
   position: absolute;
   display: none;
-  top: 115px;
+  top: 125px;
   left: 0;
   padding: 5px;
   border-radius: 3px;
@@ -120,17 +128,103 @@
 .fighter-card img{
   max-width: 80px;
 }
+
+.gameboy{
+  display: inline-block;
+  background: #333;
+  padding: 10px;
+  border-radius:5px;
+}
+.battle .gameboy{
+  display: block;
+  margin: 0 0 10px;
+}
+.battle .card{
+  max-height: 408px;
+}
 .my-fighter-area{
+  margin-right: 5px;
   vertical-align: top;
   position: relative;
-  background: #333;
   display: inline-block;
-  width: 230px;
+  width: 382px;
   border-radius: 3px;
   overflow: hidden;
-  height: 150px;
+  height: 167px;
+  background: url(../images/background.png);
 }
-/* animations */
+.my-fighter-area.background-1{
+  background-position: top left;
+}
+.my-fighter-area.background-2{
+  background-position: right;
+}
+.my-fighter-area.background-3{
+  background-position: bottom;
+}
+.my-fighter-area.background-4{
+  background-position: right bottom;
+}
+.my-fighter-area.background-5{
+  background-position: left;
+}
+.my-fighter-area.background-6{
+  background-position: right top;
+}
+.my-fighter-area.background-7{
+  background-position: -385px top;
+}
+.my-fighter-area.background-8{
+  background-position: -385px;
+}
+.my-fighter-area.background-9{
+  background-position: center 672px;
+}
+.my-fighter-area.background-10{
+  background-position: center 672px;
+}
+.my-fighter-area .fighter-card{
+  vertical-align: top;
+  margin: 5px 0 0 110px;
+}
+.my-fighter-area .fighter-card:hover{
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
+}
+.my-fighter-area .fighter-card:hover  .fighter-name{
+  display: none;
+}
+.my-fighter-area .class-sprite{
+  -moz-transform: scale(2);
+  -o-transform: scale(2);
+  -webkit-transform: scale(2);
+  transform: scale(2);
+}
+.my-fighter{
+  margin: 15px 30px 0px;
+  display: inline-block;
+  max-width: 80px;
+}
+.my-fighter .class-sprite{
+  max-width: 80px;
+  -moz-transform: scale(-2,2);
+  -o-transform: scale(-2,2);
+  -webkit-transform: scale(-2,2);
+  transform: scale(-2,2);
+}
+.my-fighter .progress{
+  margin: 0;
+}
+
+/* classes sprites */
+.class-sprite{
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+/* animations  ------------------------------------------*/
 .my-fighter-area .fighter-card.ng-enter, .slide-animate.ng-leave{
   -webkit-transition:all ease-in 1s;
   -moz-transition:all ease-in 1s;
@@ -183,23 +277,3 @@
   left: 0px;
 }
 /* end of animations */
-.my-fighter-area .fighter-card{
-  vertical-align: top;
-  margin: 5px;
-}
-.my-fighter-area .fighter-card  .fighter-name{
-  left: 100px;
-  top: 0;
-  width: 200px;
-}
-.my-fighter{
-  margin: 40px 30px 10px 10px;
-  display: inline-block;
-  max-width: 100px;
-}
-.my-fighter img{
-  max-width: 100px;
-}
-.my-fighter .progress{
-  margin: 0;
-}

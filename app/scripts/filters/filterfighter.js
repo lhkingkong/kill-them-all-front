@@ -18,7 +18,7 @@ angular.module('conquerApp')
       var searchText = searchValues[0];
       var status = searchValues[1];
       for(var i = 0, len = input.length;i<len;i++){
-        if(input[i].name.indexOf(searchText)>=0){
+        if(input[i].name.toLowerCase().indexOf(searchText.toLowerCase())>=0){
           if(status){
             if(input[i].hp>0){
               result.push(input[i]);
