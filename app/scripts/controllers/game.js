@@ -17,6 +17,7 @@ angular.module('conquerApp')
     $scope.onlyAlive = false;
     $scope.adversaries = [];
     $scope.targetAdversary = '';
+    $scope.choice = 1;
 
     webServices.getCurrentRound({
       game: parseInt($routeParams.gameId)
@@ -67,9 +68,25 @@ angular.module('conquerApp')
       $timeout.cancel($scope.timeout1);
       $timeout.cancel($scope.timeout2);
       $scope.timeout1 = $timeout(function () {
-        $scope.targetAdversary = false;
+        if($scope.myFighter.idclass == 3){
+          if($scope.choice == 1){
+            $scope.targetAdversary = false;
+          }else{
+            $scope.targetAdversary2 = false;
+          }
+        }else{
+          $scope.targetAdversary = false;
+        }
         $scope.timeout2 = $timeout(function () {
-          $scope.targetAdversary = target;
+          if($scope.myFighter.idclass == 3){
+            if($scope.choice == 1){
+              $scope.targetAdversary = target;
+            }else{
+              $scope.targetAdversary2 = target;
+            }
+          }else{
+            $scope.targetAdversary = target;
+          }
         });
       });
     }
@@ -80,6 +97,12 @@ angular.module('conquerApp')
         round: $scope.currentRound,
         game: parseInt($routeParams.gameId)
       };
+      if($scope.myFighter.idclass == 3){
+        if(!$scope.targetAdversary2.iduser){
+          return false;
+        }
+        params.target2 = $scope.targetAdversary2.iduser;
+      }
       webServices.createAction(params, function (response) {
         if (response.output === 'inserted') {
           $scope.adversaryChosen = true;

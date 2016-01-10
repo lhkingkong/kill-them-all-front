@@ -10,8 +10,7 @@
         <input class="form-control" type="text" ng-model="searchFighter" placeholder="Search Fighter">
         <div class="checkbox">
           <label>
-            <input type="checkbox" ng-model="onlyAlive">
-            Only alive
+            <input type="checkbox" ng-model="onlyAlive"> Only alive
           </label>
         </div>
       </div>
@@ -22,11 +21,22 @@
         <div class="my-fighter-area background-{{randomBackground}}">
           <my-fighter ng-if="targetAdversary" fighter="myFighter"></my-fighter>
           <fighter-card ng-if="targetAdversary" fighter="targetAdversary" ng-animate="'slide'"></fighter-card>
+          <fighter-card class="second-target" ng-show="targetAdversary2 && myFighter.idclass == 3" fighter="targetAdversary2" ng-animate="'slide'"></fighter-card>
         </div>
-        <button ng-show="targetAdversary && !adversaryChosen" ng-click="attack()" type="button" class="btn btn-danger btn-lg">Attack!</button>
-        <button ng-show="targetAdversary && adversaryChosen" ng-click="reload()" type="button" class="btn btn-info btn-lg">Reload</button>
+        <div class="gameboy-buttons-area">
+          <div class="btn-group btn-group-justified" role="group" aria-label="..." ng-show="targetAdversary && !adversaryChosen && myFighter.hp > 0 && myFighter.idclass == 3">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn" ng-class="choice == 1?'btn-success':'btn-default'" ng-click="choice=1">1st Choice</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn" ng-class="choice == 2?'btn-success':'btn-default'" ng-click="choice=2">2nd Choice</button>
+            </div>
+          </div>
+          <button ng-show="targetAdversary && !adversaryChosen && myFighter.hp > 0" ng-click="attack()" type="button" class="btn btn-danger btn-lg">Attack!</button>
+          <button ng-show="targetAdversary && adversaryChosen" ng-click="reload()" type="button" class="btn btn-info btn-lg">Reload</button>
+        </div>
       </div>
-      
+
     </div>
   </div>
 </div>

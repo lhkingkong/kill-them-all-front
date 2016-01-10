@@ -61,7 +61,7 @@ angular.module('conquerApp')
         game: $routeParams.gameId
       }, function (response) {
         if (response.output === 'closed') {
-          $location.path('/battle/' + $routeParams.gameId);
+          //$location.path('/battle/' + $routeParams.gameId);
         } else {
           console.log(response);
         }

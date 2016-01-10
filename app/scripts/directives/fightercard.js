@@ -18,6 +18,7 @@ angular.module('conquerApp')
       },
       link: function postLink(scope, element, attrs) {
         scope.getImage = function(){
+          if(!scope.fighter) return '';
           var spriteClass = '';
           // knight
 

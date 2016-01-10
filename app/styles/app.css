@@ -69,8 +69,23 @@
   font-size: 1.1em;
   text-align: center;
 }
-.class-card .progress{
+.progress{
   background: #333;
+  position: relative
+}
+.progress label{
+  padding: 0 3px;
+  position: absolute;
+  top: 2px;
+  font-size: 12px;
+  font-weight: normal;
+  left: 0;
+  width: 100%;
+  color: #EFEFEF;
+  display: inline-block;
+  text-align: left;
+}
+.class-card .progress{
   margin: 5px 0;
 }
 .class-card .progress .progress-bar{
@@ -135,6 +150,16 @@
   padding: 10px;
   border-radius:5px;
 }
+.gameboy .gameboy-buttons-area{
+  max-width: 150px;
+  display: inline-block;
+}
+.gameboy .gameboy-buttons-area .btn-group {
+  margin-bottom: 10px;
+}
+.gameboy .gameboy-buttons-area .btn-group .btn{
+  font-size: 10px;
+}
 .battle .gameboy{
   display: block;
   margin: 0 0 10px;
@@ -185,7 +210,12 @@
 }
 .my-fighter-area .fighter-card{
   vertical-align: top;
-  margin: 5px 0 0 110px;
+  margin-left: 110px;
+}
+.my-fighter-area .fighter-card.second-target{
+  position: absolute;
+  top: 21px;
+  left: 180px;
 }
 .my-fighter-area .fighter-card:hover{
   background: transparent;

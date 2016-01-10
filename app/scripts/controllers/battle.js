@@ -14,6 +14,10 @@ angular.module('conquerApp')
     webServices.getActions({
       game: $routeParams.gameId
     }, function (response) {
+      if(response.output === 'no round closed'){
+        $location.path('/gameAdmin/'+$routeParams.gameId);
+        return false;
+      }
       $scope.actions = response.output;
       for (var i = 0, len = $scope.actions.length; i < len; i++) {
         $scope.actions[i].randomBackground = $window.Math.floor(($window.Math.random() * 10) + 1);

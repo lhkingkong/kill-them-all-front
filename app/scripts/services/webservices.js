@@ -130,7 +130,7 @@ angular.module('conquerApp')
       Service = Service.insert(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     var closeRound = function (params, callback) {
       var Service = $resource(host + ':controller/close_round', {
@@ -144,7 +144,7 @@ angular.module('conquerApp')
       Service = Service.insert(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     //fighters
     var verifyFighter = function (params, callback) {
