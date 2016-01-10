@@ -1,7 +1,7 @@
 /* Space out content a bit */
 body {
   padding: 0;
-  background: #333;
+  background: url(../images/pattern.jpg) repeat;
   height: 100%;
 }
 html {
@@ -13,14 +13,14 @@ html {
   position: fixed;
   top: 0;
   left: 0;
-  border-bottom: 1px solid #600;
-  padding: 10px;
+  border-bottom: 5px solid #654;
+  padding: 7px;
   margin: 0;
   overflow: hidden;
   width: 100%;
-  background: #333;
+  background: #CBB49B;
   z-index: 1;
-  background-color: brown;
+  box-shadow: 350px 0 50px #543 inset;
 }
 .header h3 {
   padding: 0;
@@ -41,7 +41,7 @@ html {
 }
 
 .container{
-  background: #EFEFEF;
+  background: #FFEFDF;
   height: 100%;
   box-shadow: 0 0 5px #000;
   position: relative;
@@ -55,8 +55,8 @@ html {
   padding: 5px;
   margin: 5px;
   border-radius: 5px;
-  color: #700;
-  box-shadow: 2px 3px 4px #000;
+  color: #321;
+  box-shadow: 2px 3px 4px #210;
   cursor: pointer;
   text-align: right;
   bottom: 0;

@@ -1,10 +1,13 @@
 <main-header></main-header>
 <div class="content">
   <div class="card">
-    <h2>Round: <span class="label label-info">{{currentRound}}</span> </h2>
+    <h2 class="round-label" ng-if="currentRound">Round <span class="label label-info">{{currentRound}}</span> </h2>
   </div>
-  <div class="card">
-    <div ng-if="wait">Please wait and refresh when the Admin starts the round.</div>
+  <div class="card" ng-class="{'gameboy-centered': targetAdversary && adversaryChosen}">
+    <div ng-if="wait" class="wait">
+      <h3>Please wait and refresh when the Admin starts a new round.</h3>
+      <img src="../images/wait.gif" ng-click="reload()">
+    </div>
     <div ng-show="!wait">
       <div class="fighter-filter form-group" ng-show="!adversaryChosen">
         <input class="form-control" type="text" ng-model="searchFighter" placeholder="Search Fighter">
@@ -33,7 +36,7 @@
             </div>
           </div>
           <button ng-show="targetAdversary && !adversaryChosen && myFighter.hp > 0" ng-click="attack()" type="button" class="btn btn-danger btn-lg">Attack!</button>
-          <button ng-show="targetAdversary && adversaryChosen" ng-click="reload()" type="button" class="btn btn-info btn-lg">Reload</button>
+          <button ng-show="targetAdversary && adversaryChosen" ng-click="reload()" type="button" class="btn btn-info btn-lg">Refresh</button>
         </div>
       </div>
 

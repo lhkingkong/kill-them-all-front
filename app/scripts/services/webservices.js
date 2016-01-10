@@ -30,7 +30,7 @@ angular.module('conquerApp')
         function(data){
             console.log(data);
         });*/
-    }
+    };
 
     var verifyAdminUser = function (params, callback) {
       var Service = $resource(host + ':controller', {
@@ -40,7 +40,7 @@ angular.module('conquerApp')
       Service = Service.get({}).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     var signIn = function (params, callback) {
       var Service = $resource(host + ':controller/sign_in', {
@@ -50,7 +50,7 @@ angular.module('conquerApp')
       Service = Service.save(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     var signInAdmin = function (params, callback) {
       var Service = $resource(host + ':controller/sign_in', {
@@ -60,7 +60,7 @@ angular.module('conquerApp')
       Service = Service.save(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     var signUp = function (params, callback) {
       var Service = $resource('http://localhost:8081/:controller/sign_up', {
@@ -70,7 +70,7 @@ angular.module('conquerApp')
       Service = Service.save(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     var logOff = function (params, callback) {
       var Service = $resource(host + ':controller/log_off', {
@@ -80,7 +80,7 @@ angular.module('conquerApp')
       Service = Service.save(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     // games
     var getGames = function (params, callback) {
@@ -91,7 +91,7 @@ angular.module('conquerApp')
       Service = Service.get(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     var createGame = function (params, callback) {
       var Service = $resource(host + ':controller/create', {
@@ -105,7 +105,7 @@ angular.module('conquerApp')
       Service = Service.insert(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     // rounds
     var getCurrentRound = function (params, callback) {
@@ -155,7 +155,7 @@ angular.module('conquerApp')
       Service = Service.get(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     var createFighter = function (params, callback) {
       var Service = $resource(host + ':controller/create', {
@@ -169,7 +169,7 @@ angular.module('conquerApp')
       Service = Service.insert(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     // fighter classes
     var getFighterClasses = function (params, callback) {
@@ -180,7 +180,7 @@ angular.module('conquerApp')
       Service = Service.get({}).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
 
     // actions
     var getActions = function (params, callback) {
@@ -191,7 +191,7 @@ angular.module('conquerApp')
       Service = Service.get(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
     var createAction = function (params, callback) {
       var Service = $resource(host + ':controller/create', {
         controller: "action"
@@ -204,7 +204,18 @@ angular.module('conquerApp')
       Service = Service.insert(params).$promise.then(function (response) {
         _successResponse(response, callback);
       }, _errorResponse);
-    }
+    };
+    
+    // timeline
+    var getTimeline = function (params, callback) {
+      var Service = $resource(host + ':controller', {
+        controller: "timeline"
+      });
+
+      Service = Service.get(params).$promise.then(function (response) {
+        _successResponse(response, callback);
+      }, _errorResponse);
+    };
 
 
     //used for all
@@ -236,6 +247,7 @@ angular.module('conquerApp')
       createFighter: createFighter,
       getFighterClasses: getFighterClasses,
       getActions: getActions,
-      createAction: createAction
+      createAction: createAction,
+      getTimeline: getTimeline
     };
   }]);

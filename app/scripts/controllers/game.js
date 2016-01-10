@@ -17,6 +17,7 @@ angular.module('conquerApp')
     $scope.onlyAlive = false;
     $scope.adversaries = [];
     $scope.targetAdversary = '';
+    $scope.targetAdversary2 = '';
     $scope.choice = 1;
 
     webServices.getCurrentRound({
@@ -34,6 +35,9 @@ angular.module('conquerApp')
       if (response.output.action && response.output.action.target) {
         searchCurrentActionAdversary(response.output.action);
         $scope.adversaryChosen = true;
+        if(response.output.action2 && response.output.action2.target){
+          searchCurrentActionAdversary2(response.output.action2);
+        }
       } else {
         $scope.adversaryChosen = false;
       }
@@ -59,6 +63,14 @@ angular.module('conquerApp')
         }
       }
     }
+  
+  function searchCurrentActionAdversary2(action) {
+    for (var i = 0, len = $scope.adversaries.length; i < len; i++) {
+      if ($scope.adversaries[i].iduser === action.target) {
+        $scope.targetAdversary2 = $scope.adversaries[i];
+      }
+    }
+  }
 
     $scope.$watchCollection('[searchFighter,onlyAlive,adversaries]', function (newValues, oldValues) {
       $scope.filteredAdversaries = $filter('filterFighter')($scope.adversaries, newValues);
@@ -104,13 +116,17 @@ angular.module('conquerApp')
         params.target2 = $scope.targetAdversary2.iduser;
       }
       webServices.createAction(params, function (response) {
-        if (response.output === 'inserted') {
-          $scope.adversaryChosen = true;
-        } else {
-          if (response.output === 'Already action in round') {
+        switch(response.output){
+          case 'round close to more actions':
+            $route.reload();
+            break;
+          case 'inserted':
+          case 'Already action in round':
             $scope.adversaryChosen = true;
-          }
-          $scope.adversaryChosen = false;
+            break;
+          default:
+            $scope.adversaryChosen = false;
+            break;
         }
       });
     }
