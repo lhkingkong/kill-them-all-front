@@ -14,7 +14,8 @@ angular.module('conquerApp')
       replace:'true',
       scope:{
         fighter:'=',
-        total:'='
+        total:'=',
+        damage:'='
       },
       link: function postLink(scope, element, attrs) {
         scope.getImage = function(){
@@ -39,6 +40,15 @@ angular.module('conquerApp')
           spriteClass += '-' + scope.fighter.gender + '-' + scope.fighter.color;
           return spriteClass;
         };
+        
+        scope.getDamage = function(){
+          if(!scope.damage || !scope.fighter) return 0;
+          if(scope.fighter.hp + scope.damage > scope.fighter.classhp){
+            return scope.fighter.classhp;
+          }else{
+            return scope.damage;
+          }
+        }
       }
     };
   });

@@ -38,6 +38,14 @@
           <button ng-show="targetAdversary && !adversaryChosen && myFighter.hp > 0" ng-click="attack()" type="button" class="btn btn-danger btn-lg">Attack!</button>
           <button ng-show="targetAdversary && adversaryChosen" ng-click="reload()" type="button" class="btn btn-info btn-lg">Refresh</button>
         </div>
+        <div class="dialog">
+          <div ng-show="targetAdversary" fighter="targetAdversary">
+            <span class="dialog-fighter-name">{{targetAdversary.name}}:</span> {{targetAdversary.lastwords}}
+          </div>
+          <div ng-show="targetAdversary2 && myFighter.idclass == 3" fighter="targetAdversary2">
+            <span class="dialog-fighter-name">{{targetAdversary2.name}}:</span> {{targetAdversary2.lastwords}}
+          </div>
+        </div>
       </div>
 
     </div>

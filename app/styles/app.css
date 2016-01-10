@@ -176,11 +176,34 @@
   max-width: 150px;
   display: inline-block;
 }
+.gameboy .gameboy-buttons-area h6{
+  color: #EFEFEF;
+  font-size: 15px;
+  margin: 0;
+}
+.gameboy .gameboy-buttons-area .label{
+  margin: 5px 0 15px;
+  font-size: 16px;
+  display: inline-block;
+  padding: 10px;
+}
 .gameboy .gameboy-buttons-area .btn-group {
   margin-bottom: 10px;
 }
 .gameboy .gameboy-buttons-area .btn-group .btn{
   font-size: 10px;
+}
+.gameboy .dialog{
+  background: #FED;
+  color:#432;
+  border-left: 5px solid #red;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
+  text-align: left;
+}
+.gameboy .dialog .dialog-fighter-name{
+  color:chocolate;
 }
 .battle .gameboy{
   display: block;
@@ -274,6 +297,14 @@
   display: inline-block;
   width: 80px;
   height: 80px;
+}
+.class-sprite.dead{
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter:    grayscale(100%);
+  -ms-filter:     grayscale(100%);
+  -o-filter:      grayscale(100%);
 }
 
 /* animations  ------------------------------------------*/

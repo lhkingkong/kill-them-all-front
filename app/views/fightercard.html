@@ -2,8 +2,9 @@
   <div class="progress">
     <label>HP {{fighter.hp}} / {{fighter.classhp}} <span class="sr-only">{{fighter.hp}}%</span></label>
     <div class="progress-bar" role="progressbar" style="width: {{(fighter.hp*100)/fighter.classhp}}%;"></div>
+    <div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{(getDamage()*100)/fighter.classhp}}%;" ng-if="damage"></div>
   </div>
-  <div class="class-sprite" style="background-image: url(../images/{{getImage()}}.png);"></div>
+  <div class="class-sprite" ng-class="{'dead':fighter.hp==0}" style="background-image: url(../images/{{getImage()}}.png);"></div>
   <div class="fighter-name">
     {{fighter.name}}
   </div>

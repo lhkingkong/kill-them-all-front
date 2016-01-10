@@ -10,9 +10,15 @@
       <div class="gameboy" ng-if="$index < showFight" ng-class="{'skipped':action.status==2}">
         <div class="my-fighter-area background-{{action.randomBackground}}">
           <my-fighter fighter="action"></my-fighter>
-          <fighter-card fighter="action.target_fighter" ng-animate="'slide'"></fighter-card>
+          <fighter-card fighter="action.target_fighter" ng-animate="'slide'" damage="action.damage"></fighter-card>
         </div>
-        <button ng-click="nextFight($index)" type="button" class="btn btn-danger btn-lg">Next Fight</button>
+        <div class="gameboy-buttons-area">
+          <h6>Damage <label class="label label-danger">{{action.damage}}</label></h6>
+          <span class="label label-warning" ng-if="action.critical">A Critical hit!</span>
+          <span class="label label-info" ng-if="action.effective == 2">It's not very effective...</span>
+          <span class="label label-success" ng-if="action.effective == 1">It's super effective!</span>
+          <button ng-click="nextFight($index)" type="button" class="btn btn-danger btn-lg">Next Fight</button>
+        </div>
       </div>
     </div>
   </div>
