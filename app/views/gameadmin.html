@@ -1,16 +1,20 @@
 <main-header class="admin-header"></main-header>
 <div class="content game">
   <div class="card">
-    <h2 class="col-md-6 round-label">Round <span class="label label-info">{{currentRound}}</span> </h2>
-    <button type="button" class="btn btn-primary btn-lg" ng-click="battle()">Go to Battle</button>
-    <button type="button" class="btn btn-warning btn-lg" ng-click="closeRound()">Close Round</button>
-    <button type="button" class="btn btn-danger btn-lg" ng-click="endGame()">End game</button>
-    <div class="gameboy" ng-if="targetAdversary">
-      <div class="my-fighter-area background-{{randomBackground}}">
-        <fighter-card ng-if="targetAdversary" fighter="targetAdversary" ng-animate="'slide'"></fighter-card>
-        <button type="button" class="btn btn-warning" ng-click="revive()">Revive</button>
-        <button type="button" class="btn btn-warning" ng-click="kill()">Kill</button>
+    <div class="col-md-6">
+      <div class="gameboy" ng-if="targetAdversary">
+        <div class="my-fighter-area background-{{randomBackground}}">
+          <fighter-card ng-if="targetAdversary" fighter="targetAdversary" ng-animate="'slide'"></fighter-card>
+          <button type="button" class="btn btn-warning" ng-click="revive()">Revive</button>
+          <button type="button" class="btn btn-warning" ng-click="kill()">Kill</button>
+        </div>
       </div>
+    </div>
+    <div class="col-md-6">
+      <h2 class="round-label">Round <span class="label label-info">{{currentRound}}</span> </h2>
+      <button type="button" class="btn btn-primary btn-lg" ng-click="battle()">Go to Battle</button>
+      <button type="button" class="btn btn-warning btn-lg" ng-click="closeRound()">Close Round</button>
+      <button type="button" class="btn btn-danger btn-lg" ng-click="endGame()">End game</button>
     </div>
   </div>
   <div class="card">

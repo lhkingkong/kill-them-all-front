@@ -12,12 +12,20 @@
           <my-fighter fighter="action"></my-fighter>
           <fighter-card fighter="action.target_fighter" ng-animate="'slide'" damage="action.damage"></fighter-card>
         </div>
-        <div class="gameboy-buttons-area">
-          <h6>Damage <label class="label label-danger">{{action.damage}}</label></h6>
+        <div class="gameboy-buttons-area battle">
+          <h6>
+            <label>{{action.name}}</label>
+            <i class="glyphicon glyphicon-play"></i>
+            {{action.target_name}} 
+          <label class="label" ng-class="action.damage>0?'label-danger':'label-success'">{{action.damage>0?action.damage:'+'+(action.damage*-1)}}</label>
+          </h6>
+          <span class="label label-success" ng-if="action.damage<=0">Heal!</span>
           <span class="label label-warning" ng-if="action.critical">A Critical hit!</span>
           <span class="label label-info" ng-if="action.effective == 2">It's not very effective...</span>
           <span class="label label-success" ng-if="action.effective == 1">It's super effective!</span>
-          <button ng-click="nextFight($index)" type="button" class="btn btn-danger btn-lg">Next Fight</button>
+          <div>
+          <button ng-click="nextFight($index)" type="button" class="btn btn-info btn-lg">Next Fight</button>
+          </div>
         </div>
       </div>
     </div>

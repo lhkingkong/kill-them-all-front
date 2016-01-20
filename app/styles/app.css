@@ -1,3 +1,6 @@
+.container .jumbotron .btn-link{
+  float: left;
+}
 .admin-header{
   background: #900;
 }
@@ -13,6 +16,10 @@
   border-radius: 3px;
   margin-bottom: 10px;
   overflow: auto;
+  background-color: beige;
+}
+.main-view > .content .card >label{
+  color: #282921;
 }
 .main-view > .content .card.gameboy-centered{
   text-align: center;
@@ -22,7 +29,7 @@
 }
 .wait img{
   border-radius: 0 20px;
-  border: 10px solid #432;
+  border: 10px solid #484941;
   cursor: pointer;
 }
 .round-label{
@@ -33,7 +40,7 @@
 .round-label .label{
   padding: 5px;
   border-radius: 0 5px;
-  background-color: #432;
+  background-color: #484941;
   font-size: 16px;
 }
 
@@ -44,18 +51,20 @@
 }
 .games-list > li{
   cursor: pointer;
-  color:#333;
-  padding: 10px;
-  border-bottom: 1px solid #CCC;
+  padding: 20px;
+  border: 1px solid #888981;
+  background: #484941;
+  color: white;
+  border-radius: 5px;
+  margin: 5px;
 }
 .games-list > li i{
   float: right;
-  color: #333;
 }
 .games-list > li.selected{
   background: #900;
   color: #EFEFEF;
-  border-radius: 3px;
+  border: 1px solid #F8F9F1;
 }
 .games-list > li.selected i{
   color: #EFEFEF;
@@ -165,12 +174,40 @@
 .fighter-card img{
   max-width: 80px;
 }
-
+.gameboy.gameboy-admin{
+  float: left;
+}
 .gameboy{
   display: inline-block;
-  background: #432;
+  background: #484941;
   padding: 10px;
   border-radius:5px;
+}
+.gameboy .gameboy-buttons-area.battle{
+  max-width: 500px;
+}
+.gameboy .gameboy-buttons-area.battle h6{
+  margin: 5px;
+  background: #282921;
+  border-radius: 3px;
+  line-height: 30px;
+}
+.gameboy .gameboy-buttons-area.battle h6 label:first-child{
+  line-height: 30px;
+  background: red;
+  display: inline-block;
+  padding: 0 10px;
+}
+.gameboy .gameboy-buttons-area.battle h6 .glyphicon{
+  color: red;
+  margin-left: -10px;
+  font-size: 33px;
+  vertical-align: top;
+  margin-top: -3px;
+}
+.gameboy .gameboy-buttons-area.battle h6 label{
+  margin: 0;
+  vertical-align: top;
 }
 .gameboy .gameboy-buttons-area{
   max-width: 150px;
@@ -195,7 +232,7 @@
 }
 .gameboy .dialog{
   background: #FED;
-  color:#432;
+  color:#484941;
   border-left: 5px solid #red;
   border-radius: 5px;
   padding: 5px;

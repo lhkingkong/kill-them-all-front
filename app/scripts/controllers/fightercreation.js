@@ -87,11 +87,13 @@ angular.module('conquerApp')
         color: $scope.color
       };
       webServices.createFighter(params, function (response) {
+        if(response.output === 'game started'){
+          alert("Sorry you can't enter into a middle of a battle.");
+        }
         if (response.output.idfighter) {
           fighterInfo.set(response.output);
           $location.path('/game/' + $routeParams.gameId);
         }
-      })
-      console.log(params);
+      });
     };
   });
