@@ -1,10 +1,5 @@
 <main-header class="admin-header"></main-header>
 <div class="content battle">
-  <div class="card">
-    <button type="button" class="btn btn-primary btn-lg" ng-click="nextRound()">
-      Start new Round
-    </button>
-  </div>
   <div class="card scroll-bottom">
     <div ng-repeat="action in actions track by action.idaction">
       <div class="gameboy" ng-if="$index < showFight" ng-class="{'skipped':action.status==2}">
@@ -23,11 +18,16 @@
           <span class="label label-warning" ng-if="action.critical">A Critical hit!</span>
           <span class="label label-info" ng-if="action.effective == 2">It's not very effective...</span>
           <span class="label label-success" ng-if="action.effective == 1">It's super effective!</span>
-          <div>
+          <div ng-hide="$last">
           <button ng-click="nextFight($index)" type="button" class="btn btn-info btn-lg">Next Fight</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="card right">
+    <button type="button" class="btn btn-primary btn-lg" ng-click="nextRound()">
+      Start new Round
+    </button>
   </div>
 </div>

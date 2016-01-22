@@ -14,15 +14,19 @@
       <h2 class="round-label">Round <span class="label label-info">{{currentRound}}</span> </h2>
       <button type="button" class="btn btn-primary btn-lg" ng-click="battle()">Go to Battle</button>
       <button type="button" class="btn btn-warning btn-lg" ng-click="closeRound()">Close Round</button>
-      <button type="button" class="btn btn-danger btn-lg" ng-click="endGame()">End game</button>
+      <button type="button" class="btn btn-danger btn-lg" ng-click="endGame()">
+        <i class="fa fa-trophy"></i>
+      </button>
     </div>
   </div>
   <div class="card">
     <div ng-if="wait">Please wait and refresh when the Admin starts the round.</div>
     <div ng-show="!wait">
       <div class="fighter-filter">
-        <input type="text" ng-model="searchFighter" placeholder="Search Fighter"> Only alive
-        <input type="checkbox" ng-model="onlyAlive">
+        <input type="text" ng-model="searchFighter" placeholder="Search Fighter">
+        <span class="custom-checkbox">Only alive
+        <i class="fa" ng-class="onlyAlive?'fa-check-square':' fa-square-o'" ng-click="toggleOnlyAlive()"></i>
+        </span>
       </div>
       <div class="adversary-area">
         <fighter-card fighter="adversary" ng-repeat="adversary in filteredAdversaries track by $index" total="adversaries.length" ng-click="selectTarget(adversary)" ng-class="{'selected':targetAdversary.idfighter === adversary.idfighter}"></fighter-card>

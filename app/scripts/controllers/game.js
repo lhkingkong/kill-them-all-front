@@ -35,7 +35,7 @@ angular.module('conquerApp')
       if (response.output.action && response.output.action.target) {
         searchCurrentActionAdversary(response.output.action);
         $scope.adversaryChosen = true;
-        if(response.output.action2 && response.output.action2.target){
+        if (response.output.action2 && response.output.action2.target) {
           searchCurrentActionAdversary2(response.output.action2);
         }
       } else {
@@ -63,14 +63,14 @@ angular.module('conquerApp')
         }
       }
     }
-  
-  function searchCurrentActionAdversary2(action) {
-    for (var i = 0, len = $scope.adversaries.length; i < len; i++) {
-      if ($scope.adversaries[i].iduser === action.target) {
-        $scope.targetAdversary2 = $scope.adversaries[i];
+
+    function searchCurrentActionAdversary2(action) {
+      for (var i = 0, len = $scope.adversaries.length; i < len; i++) {
+        if ($scope.adversaries[i].iduser === action.target) {
+          $scope.targetAdversary2 = $scope.adversaries[i];
+        }
       }
     }
-  }
 
     $scope.$watchCollection('[searchFighter,onlyAlive,adversaries]', function (newValues, oldValues) {
       $scope.filteredAdversaries = $filter('filterFighter')($scope.adversaries, newValues);
@@ -80,23 +80,23 @@ angular.module('conquerApp')
       $timeout.cancel($scope.timeout1);
       $timeout.cancel($scope.timeout2);
       $scope.timeout1 = $timeout(function () {
-        if($scope.myFighter.idclass == 3){
-          if($scope.choice == 1){
+        if ($scope.myFighter.idclass == 3) {
+          if ($scope.choice == 1) {
             $scope.targetAdversary = false;
-          }else{
+          } else {
             $scope.targetAdversary2 = false;
           }
-        }else{
+        } else {
           $scope.targetAdversary = false;
         }
         $scope.timeout2 = $timeout(function () {
-          if($scope.myFighter.idclass == 3){
-            if($scope.choice == 1){
+          if ($scope.myFighter.idclass == 3) {
+            if ($scope.choice == 1) {
               $scope.targetAdversary = target;
-            }else{
+            } else {
               $scope.targetAdversary2 = target;
             }
-          }else{
+          } else {
             $scope.targetAdversary = target;
           }
         });
@@ -109,30 +109,34 @@ angular.module('conquerApp')
         round: $scope.currentRound,
         game: parseInt($routeParams.gameId)
       };
-      if($scope.myFighter.idclass == 3){
-        if(!$scope.targetAdversary2.iduser){
+      if ($scope.myFighter.idclass == 3) {
+        if (!$scope.targetAdversary2.iduser) {
           return false;
         }
         params.target2 = $scope.targetAdversary2.iduser;
       }
       webServices.createAction(params, function (response) {
-        switch(response.output){
-          case 'round close to more actions':
-            $route.reload();
-            break;
-          case 'inserted':
-          case 'Already action in round':
-            $scope.adversaryChosen = true;
-            break;
-          default:
-            $scope.adversaryChosen = false;
-            break;
+        switch (response.output) {
+        case 'round close to more actions':
+          $route.reload();
+          break;
+        case 'inserted':
+        case 'Already action in round':
+          $scope.adversaryChosen = true;
+          break;
+        default:
+          $scope.adversaryChosen = false;
+          break;
         }
       });
     }
 
     $scope.reload = function () {
       $route.reload();
+    };
+
+    $scope.toggleOnlyAlive = function () {
+      $scope.onlyAlive = !$scope.onlyAlive;
     };
 
   });

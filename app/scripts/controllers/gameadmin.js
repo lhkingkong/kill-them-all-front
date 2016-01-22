@@ -8,7 +8,7 @@
  * Controller of the conquerApp
  */
 angular.module('conquerApp')
-  .controller('GameadminCtrl', function ($scope, $routeParams, $route, $filter, $timeout, $location, $window,  webServices) {
+  .controller('GameadminCtrl', function ($scope, $routeParams, $route, $filter, $timeout, $location, $window, webServices) {
     $scope.randomBackground = $window.Math.floor(($window.Math.random() * 10) + 1);
     $scope.gameName = '';
     $scope.currentRound = '';
@@ -66,5 +66,9 @@ angular.module('conquerApp')
           console.log(response);
         }
       });
+    };
+
+    $scope.toggleOnlyAlive = function () {
+      $scope.onlyAlive = !$scope.onlyAlive;
     };
   });

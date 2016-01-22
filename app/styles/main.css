@@ -13,21 +13,25 @@ html {
   position: fixed;
   top: 0;
   left: 0;
-  border-bottom: 5px solid #484941;
-  padding: 7px;
   margin: 0;
   overflow: hidden;
   width: 100%;
-  background: #CBB49B;
   z-index: 1;
-  box-shadow: 350px 0 50px #484941 inset;
+  padding-bottom: 5px;
+  color: #EFEFEF;
+  text-shadow: 2px 2px 0px #222;
+}
+.header > * {
+  background: #484941;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 0 0 10px 10px;
 }
 .header h3 {
-  padding: 0;
-  margin: 0;
-  color: #EFEFEF;
   display: inline-block;
-  line-height: 35px;
+  line-height: 40px;
+  text-transform: capitalize;
+  text-shadow: 2px 2px 0px #222;
 }
 .header h4 {
   display: inline-block;
@@ -43,7 +47,7 @@ html {
 .container{
   height: 100%;
   position: relative;
-  padding: 60px 0 0;
+  padding: 50px 0 0;
   overflow-y: auto;
   max-width: 1024px;
 }
