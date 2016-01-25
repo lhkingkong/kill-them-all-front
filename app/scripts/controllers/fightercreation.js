@@ -52,7 +52,7 @@ angular.module('conquerApp')
     };
 
     $scope.changeColor = function(){
-      if($scope.color===3){
+      if($scope.color===4){
         $scope.color=1;
       }else{
         $scope.color++;
