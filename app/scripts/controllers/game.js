@@ -8,7 +8,7 @@
  * Controller of the conquerApp
  */
 angular.module('conquerApp')
-  .controller('GameCtrl', function ($scope, $routeParams, $route, $filter, $timeout, $window, webServices, fighterInfo) {
+  .controller('GameCtrl', function ($scope, $routeParams, $route, $filter, $timeout, $window, $location, webServices, fighterInfo) {
     $scope.randomBackground = $window.Math.floor(($window.Math.random() * 10) + 1);
     $scope.gameName = '';
     $scope.currentRound = '';
@@ -28,6 +28,10 @@ angular.module('conquerApp')
         return;
       } else {
         $scope.wait = false;
+      }
+      if(response.output.game.status === 3){
+        $location.path('/end/' + $routeParams.gameId);
+        return false;
       }
       $scope.gameName = response.output.game.name;
       $scope.currentRound = response.output.round.round;
@@ -73,8 +77,8 @@ angular.module('conquerApp')
     }
 
     $scope.$watchCollection('[searchFighter,onlyAlive,adversaries]', function (newValues, oldValues) {
-      $scope.filteredAdversaries = $filter('filterFighter')($scope.adversaries, newValues);
-    });
+  $scope.filteredAdversaries = $filter('filterFighter')($scope.adversaries, newValues);
+});
 
     $scope.selectTarget = function (target) {
       $timeout.cancel($scope.timeout1);

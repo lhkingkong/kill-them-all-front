@@ -24,7 +24,13 @@ angular.module('conquerApp')
               result.push(input[i]);
             }
           }else{
-            result.push(input[i]);
+            if(searchValues[2] === true){
+              if(input[i].hp<=0){
+                result.push(input[i]);
+              }
+            }else{
+              result.push(input[i]);
+            }
           }
         }
       }

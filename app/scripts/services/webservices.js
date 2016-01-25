@@ -106,6 +106,20 @@ angular.module('conquerApp')
         _successResponse(response, callback);
       }, _errorResponse);
     };
+    
+    var endGame = function (params, callback) {
+      var Service = $resource(host + ':controller/end_game', {
+        controller: "game"
+      }, {
+        "insert": {
+          method: 'POST'
+        }
+      });
+
+      Service = Service.insert(params).$promise.then(function (response) {
+        _successResponse(response, callback);
+      }, _errorResponse);
+    };
 
     // rounds
     var getCurrentRound = function (params, callback) {
@@ -159,6 +173,48 @@ angular.module('conquerApp')
 
     var createFighter = function (params, callback) {
       var Service = $resource(host + ':controller/create', {
+        controller: "fighter"
+      }, {
+        "insert": {
+          method: 'POST'
+        }
+      });
+
+      Service = Service.insert(params).$promise.then(function (response) {
+        _successResponse(response, callback);
+      }, _errorResponse);
+    };
+    
+    var getFighterInfo = function (params, callback) {
+      var Service = $resource(host + ':controller/get_info', {
+        controller: "fighter"
+      }, {
+        "insert": {
+          method: 'POST'
+        }
+      });
+
+      Service = Service.insert(params).$promise.then(function (response) {
+        _successResponse(response, callback);
+      }, _errorResponse);
+    };
+    
+    var killFighter = function (params, callback) {
+      var Service = $resource(host + ':controller/kill', {
+        controller: "fighter"
+      }, {
+        "insert": {
+          method: 'POST'
+        }
+      });
+
+      Service = Service.insert(params).$promise.then(function (response) {
+        _successResponse(response, callback);
+      }, _errorResponse);
+    };
+    
+    var reviveFighter = function (params, callback) {
+      var Service = $resource(host + ':controller/revive', {
         controller: "fighter"
       }, {
         "insert": {
@@ -240,11 +296,15 @@ angular.module('conquerApp')
       logOff: logOff,
       getGames: getGames,
       createGame: createGame,
+      endGame: endGame,
       getCurrentRound: getCurrentRound,
       nextRound: nextRound,
       closeRound: closeRound,
       verifyFighter: verifyFighter,
       createFighter: createFighter,
+      getFighterInfo: getFighterInfo,
+      killFighter: killFighter,
+      reviveFighter: reviveFighter,
       getFighterClasses: getFighterClasses,
       getActions: getActions,
       createAction: createAction,

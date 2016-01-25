@@ -1,0 +1,81 @@
+<main-header></main-header>
+<div class="content">
+  <div class="card center">
+    <div class="gameboy">
+      <div class="background-end">
+        <div class="confetti"></div>
+        <div class="alive">
+          <fighter-card-end fighter="adversary" ng-repeat="adversary in aliveFighters track by $index" total="adversaries.length" ng-click="selectTarget(adversary)" ng-class="{'selected':targetAdversary.idfighter === adversary.idfighter}"></fighter-card-end>
+        </div>
+
+        <div class="dead1">
+          <fighter-card-end fighter="adversary" ng-repeat="adversary in deadFighters1|limitTo:9 track by $index" total="adversaries.length" ng-click="selectTarget(adversary)" ng-class="{'selected':targetAdversary.idfighter === adversary.idfighter}"></fighter-card-end>
+        </div>
+        <div class="dead2">
+          <fighter-card-end fighter="adversary" ng-repeat="adversary in deadFighters2|limitTo:9 track by $index" total="adversaries.length" ng-click="selectTarget(adversary)" ng-class="{'selected':targetAdversary.idfighter === adversary.idfighter}"></fighter-card-end>
+        </div>
+      </div>
+      <div class="gameboy-buttons-area battle">
+        <button ng-click="nextFight($index)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fighterList">
+          <i class="fa fa-users"></i>
+        </button>
+      </div>
+      <h2 class="winner-title">Winner<span ng-if="winners.length>1">s</span></h2>
+      <div class="winner">
+        <fighter-card-winner fighter="adversary" ng-repeat="adversary in aliveFighters track by $index" ng-click="setInfoModal(adversary)" total="aliveFighters.length" data-toggle="modal" data-target="#endModal"></fighter-card-winner>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{modalFighter.name}}</h4>
+        </div>
+        <div class="modal-body">
+          <fighter-card-winner fighter="modalFighter"></fighter-card-winner>
+          <div class="scroll-bottom">
+            <div class="gameboy" ng-class="{'skipped':action.status==2}" ng-repeat="action in modalFighter.info.timeline">
+              <div class="my-fighter-area background-{{action.randomBackground}}">
+                <my-fighter fighter="action"></my-fighter>
+                <fighter-card fighter="action.target_fighter" ng-animate="'slide'" damage="action.damage"></fighter-card>
+              </div>
+              <div class="gameboy-buttons-area battle">
+                <h6>
+                    <label>{{action.name}}</label>
+                    <i class="glyphicon glyphicon-play"></i>
+                    {{action.target_name}} 
+                    <label class="label" ng-class="action.damage>0?'label-danger':'label-success'">{{action.damage>=0?action.damage:'+'+(action.damage*-1)}}</label>
+                  </h6>
+                <span class="label label-success" ng-if="action.damage<0">Heal!</span>
+                <span class="label label-warning" ng-if="action.damage!=0 && action.critical">A Critical hit!</span>
+                <span class="label label-info" ng-if="action.damage!=0 && action.effective == 2">It's not very effective...</span>
+                <span class="label label-success" ng-if="action.damage!=0 && action.effective == 1">It's super effective!</span>
+                <span class="label label-success" ng-if="action.damage==0">Miss!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="fighterList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Fighters</h4>
+        </div>
+        <div class="modal-body">
+          <div class="scroll-bottom">
+            
+            <fighter-card fighter="adversary" ng-repeat="adversary in fighters track by $index" ng-click="setInfoModal(adversary)" total="fighters.length" data-toggle="modal" data-target="#endModal"></fighter-card>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

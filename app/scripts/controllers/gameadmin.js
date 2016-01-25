@@ -68,7 +68,43 @@ angular.module('conquerApp')
       });
     };
 
+    $scope.endGame = function () {
+      if (confirm('Did you want to finish the game? (the winners will be the fighters that still have life)')) {
+        webServices.endGame({
+          game: $routeParams.gameId
+        }, function (response) {
+          if (response.output === 'ended') {
+            $location.path('/end/' + $routeParams.gameId);
+          } else {
+            console.log(response);
+          }
+        });
+      }
+    };
+
     $scope.toggleOnlyAlive = function () {
       $scope.onlyAlive = !$scope.onlyAlive;
     };
+
+    $scope.kill = function () {
+      webServices.killFighter({
+        fighter: $scope.targetAdversary.idfighter
+      }, function (response) {
+        console.log(response.output);
+      });
+    };
+
+    $scope.revive = function () {
+      webServices.reviveFighter({
+        fighter: $scope.targetAdversary.idfighter,
+        hp: $scope.targetAdversary.classhp
+      }, function (response) {
+        console.log(response.output);
+      });
+    };
+
+    $scope.changeGame = function () {
+      $location.path('\admin');
+    };
+
   });

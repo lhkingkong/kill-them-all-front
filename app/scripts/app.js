@@ -266,6 +266,43 @@ angular
         }]
         }
       })
+      .when('/end/:gameId', {
+        templateUrl: 'views/end.html',
+        controller: 'EndCtrl',
+        controllerAs: 'end',
+        resolve: {
+          response: ['webServices', '$q', '$location', '$resource', 'userInfo', 'adminUserInfo', function (webServices, $q, $location, $resource, userInfo, adminUserInfo) {
+            var dfd = $q.defer();
+            var user = userInfo.get();
+            if (!user) {
+              webServices.verifyUser({}, function (response) {
+                if (!response.user) {
+                  user = adminUserInfo.get();
+                  if (!user) {
+                    webServices.verifyAdminUser({}, function (response) {
+                      if (!response.admin) {
+                        $location.path('/login');
+                        dfd.reject('Not logged');
+                      } else {
+                        adminUserInfo.set(response.admin);
+                        dfd.resolve();
+                      }
+                    });
+                  } else {
+                    dfd.resolve();
+                  }
+                } else {
+                  userInfo.set(response.user);
+                  dfd.resolve();
+                }
+              });
+            } else {
+              dfd.resolve();
+            }
+            return dfd.promise;
+        }]
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });
