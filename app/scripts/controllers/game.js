@@ -29,7 +29,7 @@ angular.module('conquerApp')
       } else {
         $scope.wait = false;
       }
-      if(response.output.game.status === 3){
+      if (response.output.game.status === 3) {
         $location.path('/end/' + $routeParams.gameId);
         return false;
       }
@@ -77,10 +77,11 @@ angular.module('conquerApp')
     }
 
     $scope.$watchCollection('[searchFighter,onlyAlive,adversaries]', function (newValues, oldValues) {
-  $scope.filteredAdversaries = $filter('filterFighter')($scope.adversaries, newValues);
-});
+      $scope.filteredAdversaries = $filter('filterFighter')($scope.adversaries, newValues);
+    });
 
     $scope.selectTarget = function (target) {
+      console.log(target);
       $timeout.cancel($scope.timeout1);
       $timeout.cancel($scope.timeout2);
       $scope.timeout1 = $timeout(function () {

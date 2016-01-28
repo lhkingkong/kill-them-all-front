@@ -15,11 +15,19 @@
       <button type="button" class="btn btn-default btn-lg" ng-click="changeGame()">
         <i class="fa fa-gamepad"></i>
       </button>
+
+      <button type="button" class="btn btn-default btn-lg" ng-click="killRandom()">
+        <i class="fa fa-trash"></i>
+      </button>
+
       <button type="button" class="btn btn-primary btn-lg" ng-click="battle()">Go to Battle</button>
       <button type="button" class="btn btn-warning btn-lg" ng-click="closeRound()">Close Round</button>
       <button type="button" class="btn btn-danger btn-lg" ng-click="endGame()">
         <i class="fa fa-trophy"></i>
       </button>
+      <div class="gameboy">
+        <input type="text" class="form-control" placeholder="Number of random kills" ng-model="kills">
+      </div>
     </div>
   </div>
   <div class="card">

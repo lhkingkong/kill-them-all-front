@@ -4,6 +4,9 @@
 .center{
   text-align: center;
 }
+.relative{
+  position: relative;
+}
 .container .jumbotron .btn-link{
   float: left;
 }
@@ -429,13 +432,13 @@
 .winner-title{
   color: yellow;
   background: #333;
-  margin: 5px 0;
+  margin: 5px 0 0;
   display: block;
   padding: 5px;
   border-radius: 5px 5px 0 0;
 }
 .winner{
-  max-height: 105px;
+  max-height: 110px;
   overflow-y: auto;
   padding-left: 20px;
 }
@@ -583,3 +586,10 @@
   left: 0px;
 }
 /* end of animations */
+.winner-img{
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: inline-block;
+}

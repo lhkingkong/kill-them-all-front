@@ -16,12 +16,12 @@
       </div>
       <label>Fighter Name:</label>
       <input type="text" class="col-md-12" ng-model="fighterName" maxlength="45">
-      <label>Speech before kill somebody:</label>
-      <input type="text" class="col-md-12" ng-model="killSpeech">
-      <label>Your entrance line:</label>
-      <input type="text" class="col-md-12" ng-model="lastWords">
-      <label>Victory speech:</label>
-      <input type="text" class="col-md-12" ng-model="victorySpeech">
+      <label ng-hide="hideParameters">Speech before kill somebody:</label>
+      <input ng-hide="hideParameters" type="text" class="col-md-12" ng-model="killSpeech">
+      <label ng-hide="hideParameters">Your entrance line:</label>
+      <input ng-hide="hideParameters" type="text" class="col-md-12" ng-model="lastWords">
+      <label ng-hide="hideParameters">Victory speech:</label>
+      <input ng-hide="hideParameters" type="text" class="col-md-12" ng-model="victorySpeech">
       <label>Type:</label>
       <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">

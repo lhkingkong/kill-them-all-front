@@ -1,7 +1,7 @@
 <main-header></main-header>
 <div class="content">
   <div class="card center">
-    <div class="gameboy">
+    <div class="gameboy relative">
       <div class="background-end">
         <div class="confetti"></div>
         <div class="alive">
@@ -24,6 +24,7 @@
       <div class="winner">
         <fighter-card-winner fighter="adversary" ng-repeat="adversary in aliveFighters track by $index" ng-click="setInfoModal(adversary)" total="aliveFighters.length" data-toggle="modal" data-target="#endModal"></fighter-card-winner>
       </div>
+      <img class="winner-img" src="../images/win.png">
     </div>
   </div>
   <!-- Modal -->

@@ -199,6 +199,20 @@ angular.module('conquerApp')
       }, _errorResponse);
     };
     
+    var killRandom = function (params, callback) {
+      var Service = $resource(host + ':controller/kill_random', {
+        controller: "fighter"
+      }, {
+        "insert": {
+          method: 'POST'
+        }
+      });
+
+      Service = Service.insert(params).$promise.then(function (response) {
+        _successResponse(response, callback);
+      }, _errorResponse);
+    };
+    
     var killFighter = function (params, callback) {
       var Service = $resource(host + ':controller/kill', {
         controller: "fighter"
@@ -303,6 +317,7 @@ angular.module('conquerApp')
       verifyFighter: verifyFighter,
       createFighter: createFighter,
       getFighterInfo: getFighterInfo,
+      killRandom: killRandom,
       killFighter: killFighter,
       reviveFighter: reviveFighter,
       getFighterClasses: getFighterClasses,

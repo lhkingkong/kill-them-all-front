@@ -9,9 +9,11 @@
  */
 angular.module('conquerApp')
   .controller('FightercreationCtrl', function ($scope, webServices, $routeParams, $location, fighterInfo) {
-    $scope.color = 1;
+    $scope.hideParameters = true;
+    $scope.color = Math.floor((Math.random() * 5) + 1);;
     $scope.classes = [];
     $scope.selectedClass = '';
+
     webServices.getFighterClasses({}, function (response) {
       $scope.classes = response.output;
     });
@@ -51,15 +53,32 @@ angular.module('conquerApp')
       return spriteClass;
     };
 
-    $scope.changeColor = function(){
-      if($scope.color===4){
-        $scope.color=1;
-      }else{
+    $scope.changeColor = function () {
+      if ($scope.color === 5) {
+        $scope.color = 1;
+      } else {
         $scope.color++;
       }
     };
 
     $scope.createFighter = function () {
+      switch ($scope.color) {
+        case 4:
+          $scope.killSpeech = 'The Force is strong in you!';
+          $scope.lastWords = 'Sorry, I did my best';
+          $scope.victorySpeech = 'May the force be with me when I take that breakfast in La Gula';
+          break;
+        case 5:
+          $scope.killSpeech = 'I wanna be the very best... Pokemon!';
+          $scope.lastWords = 'Sorry, I did my best';
+          $scope.victorySpeech = 'Pokemon rules!';
+          break;
+        default: 
+          $scope.killSpeech = 'I must win this breakfast in La Gula!';
+          $scope.lastWords = 'Sorry, I did my best';
+          $scope.victorySpeech = 'Awesome! I won the breakfast in La Gula!';
+          break;
+      }
       if (typeof $scope.gender === 'undefined' ||
         typeof $scope.fighterName === 'undefined' ||
         typeof $scope.killSpeech === 'undefined' ||
@@ -87,8 +106,11 @@ angular.module('conquerApp')
         color: $scope.color
       };
       webServices.createFighter(params, function (response) {
-        if(response.output === 'game started'){
+        if (response.output === 'game started') {
           alert("Sorry you can't enter into a middle of a battle.");
+        }
+        if (response.output === 'no rounds registered') {
+          alert("Please wait for the administrator, to start the game");
         }
         if (response.output.idfighter) {
           fighterInfo.set(response.output);

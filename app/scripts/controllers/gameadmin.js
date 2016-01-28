@@ -86,6 +86,20 @@ angular.module('conquerApp')
       $scope.onlyAlive = !$scope.onlyAlive;
     };
 
+    $scope.killRandom = function () {
+      if ($scope.kills > 0) {
+        webServices.killRandom({
+          game: $routeParams.gameId,
+          kills: $scope.kills,
+          round: $scope.currentRound
+        }, function (response) {
+          if(response.output && response.output !== 'no fighter'){
+            $scope.filteredAdversaries = $scope.adversaries = response.output;
+          }
+        });
+      }
+    }
+
     $scope.kill = function () {
       webServices.killFighter({
         fighter: $scope.targetAdversary.idfighter
