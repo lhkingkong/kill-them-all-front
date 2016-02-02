@@ -63,7 +63,7 @@ angular.module('conquerApp')
     };
 
     var signUp = function (params, callback) {
-      var Service = $resource('http://localhost:8081/:controller/sign_up', {
+      var Service = $resource(host + ':controller/sign_up', {
         controller: "user"
       });
 

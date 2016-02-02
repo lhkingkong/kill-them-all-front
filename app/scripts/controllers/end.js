@@ -25,9 +25,9 @@ angular.module('conquerApp')
       }
       $scope.gameName = response.output.game.name;
       $scope.currentRound = response.output.round.round;
-      
+
       organizeTargetFightersInfo(response.output.fighters);
-      
+
       $scope.fighters = response.output.fighters;
 
       var searchValues = ['', true];
@@ -42,7 +42,7 @@ angular.module('conquerApp')
         } else {
           $scope.deadFighters2.push(deadFighters[i]);
         }
-      } 
+      }
     });
 
     function organizeTargetFightersInfo(fighters) {
@@ -51,6 +51,7 @@ angular.module('conquerApp')
         actions = fighters[j].info.timeline;
         for (var i = 0, len = actions.length; i < len; i++) {
           actions[i].randomBackground = $window.Math.floor(($window.Math.random() * 10) + 1);
+          actions[i].userRealName = getUserByIdFighter(fighters, actions[i].idfighter);
           actions[i].target_fighter = {
             classhp: actions[i].target_classhp,
             color: actions[i].target_color,
@@ -63,8 +64,17 @@ angular.module('conquerApp')
             lastwords: actions[i].target_lastwords,
             name: actions[i].target_name,
             status: actions[i].target_status,
-            type: actions[i].target_type
+            type: actions[i].target_type,
+            userRealName: getUserByIdFighter(fighters, actions[i].target_idfighter)
           };
+        }
+      }
+    }
+
+    function getUserByIdFighter(fighters, idfighter) {
+      for (var j = 0, len2 = fighters.length; j < len2; j++) {
+        if (idfighter === fighters[j].idfighter) {
+          return fighters[j].info.user.realname;
         }
       }
     }

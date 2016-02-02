@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="gameboy-buttons-area battle">
-        <button ng-click="nextFight($index)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fighterList">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#fighterList">
           <i class="fa fa-users"></i>
         </button>
       </div>
@@ -45,11 +45,24 @@
               </div>
               <div class="gameboy-buttons-area battle">
                 <h6>
-                    <label>{{action.name}}</label>
+                  <label class="battle-resume">
+                    {{action.name}}
+                    <span class="real-name">
+                    {{action.userRealName}}
+                    </span>
+                    </label>
                     <i class="glyphicon glyphicon-play"></i>
+                  <span class="battle-resume">
                     {{action.target_name}} 
+                    <span class="real-name">
+                      {{action.target_fighter.userRealName}}
+                    </span>
+                  </span>
+                    
                     <label class="label" ng-class="action.damage>0?'label-danger':'label-success'">{{action.damage>=0?action.damage:'+'+(action.damage*-1)}}</label>
                   </h6>
+
+
                 <span class="label label-success" ng-if="action.damage<0">Heal!</span>
                 <span class="label label-warning" ng-if="action.damage!=0 && action.critical">A Critical hit!</span>
                 <span class="label label-info" ng-if="action.damage!=0 && action.effective == 2">It's not very effective...</span>
@@ -72,9 +85,9 @@
         </div>
         <div class="modal-body">
           <div class="scroll-bottom">
-            
+
             <fighter-card fighter="adversary" ng-repeat="adversary in fighters track by $index" ng-click="setInfoModal(adversary)" total="fighters.length" data-toggle="modal" data-target="#endModal"></fighter-card>
-            </div>
+          </div>
         </div>
       </div>
     </div>

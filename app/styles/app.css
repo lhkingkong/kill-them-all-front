@@ -109,6 +109,7 @@
   padding: 10px;
   border-radius: 3px;
   cursor: pointer;
+  position: relative;
 }
 .class-card.selected{
   background-color: #334;
@@ -124,6 +125,22 @@
   padding: 0;
   font-size: 1.1em;
   text-align: center;
+}
+.class-card .class-description{
+  position: absolute;
+  top: 10px;
+  left: 100%;
+  display: none;
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+  background-color: #333;
+  color: white;
+  width: 150px;
+  z-index: 5;
+  opacity: 0.9;
+}
+.class-card:hover .class-description{
+  display: block;
 }
 .progress{
   background: #333;
@@ -309,6 +326,7 @@
   max-height: 408px;
 }
 .my-fighter-area{
+  text-align: left;
   margin-right: 5px;
   vertical-align: top;
   position: relative;
@@ -429,6 +447,35 @@
   top: 160px;
   z-index: 2;
 }
+.battle-resume {
+  position: relative;
+  display: inline-block;
+}
+.battle-resume .real-name{
+  position: absolute;
+  background: #CCC;
+  color: #333;
+  text-shadow: none;
+  font-weight: normal;
+  top: 100%;
+  border-radius: 0 0 5px 5px;
+  padding: 0 10px;
+  display: none;
+  min-width: 300px;
+  right: 0;
+  text-align: right;
+}
+.battle-resume:hover .real-name{
+  display: block;
+}
+.dead-sign{
+  text-align: center;
+  background-color: darkred;
+  color: #CCC;
+  font-weight: bold;
+  border-radius: 5px 0 5px 0;
+  margin: 0;
+}
 .winner-title{
   color: yellow;
   background: #333;
@@ -499,7 +546,9 @@
 #endModal .modal-body{
   background: #333;
 }
-
+.game-container .duel .my-fighter{
+  cursor: pointer;
+}
 .my-fighter{
   margin: 15px 30px 0px;
   display: inline-block;

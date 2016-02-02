@@ -1,7 +1,8 @@
 <div class="my-fighter">
-  <div class="progress">
+  <div class="progress" ng-if="fighter.hp!==0">
     <label>HP {{fighter.hp}} / {{fighter.classhp}} <span class="sr-only">{{fighter.hp}}%</span></label>
     <div class="progress-bar" role="progressbar" style="width: {{(fighter.hp*100)/fighter.classhp}}%;"></div>
   </div>
+  <div ng-if="fighter.hp==0" class="dead-sign">DEAD</div>
   <div class="class-sprite" ng-class="{'dead':fighter.hp==0}" style="background-image: url(../images/{{getImage()}}.png);"></div>
 </div>

@@ -35,6 +35,7 @@ angular.module('conquerApp')
       }
       $scope.gameName = response.output.game.name;
       $scope.currentRound = response.output.round.round;
+      organizeTargetFightersInfo(response.output.fighters);
       removeMyFighterFromAdversaries(response.output.fighters);
       if (response.output.action && response.output.action.target) {
         searchCurrentActionAdversary(response.output.action);
@@ -72,6 +73,30 @@ angular.module('conquerApp')
       for (var i = 0, len = $scope.adversaries.length; i < len; i++) {
         if ($scope.adversaries[i].iduser === action.target) {
           $scope.targetAdversary2 = $scope.adversaries[i];
+        }
+      }
+    }
+
+    function organizeTargetFightersInfo(fighters) {
+      var actions = [];
+      for (var j = 0, len2 = fighters.length; j < len2; j++) {
+        actions = fighters[j].info.timeline;
+        for (var i = 0, len = actions.length; i < len; i++) {
+          actions[i].randomBackground = $window.Math.floor(($window.Math.random() * 10) + 1);
+          actions[i].target_fighter = {
+            classhp: actions[i].target_classhp,
+            color: actions[i].target_color,
+            gender: actions[i].target_gender,
+            hp: actions[i].target_hp,
+            idclass: actions[i].target_idclass,
+            idfighter: actions[i].target_idfighter,
+            idgame: actions[i].target_idgame,
+            iduser: actions[i].target_iduser,
+            lastwords: actions[i].target_lastwords,
+            name: actions[i].target_name,
+            status: actions[i].target_status,
+            type: actions[i].target_type
+          };
         }
       }
     }
